@@ -11,13 +11,13 @@ var configs = {
 };
 
 if (process.env.JAWSDB_URL) {
-  var sherpaDB = new Sequelize(process.env.JAWSDB_URL);
+  var petLegacyDB = new Sequelize(process.env.JAWSDB_URL);
 } else {
-  var sherpaDB = new Sequelize(configs['local'].database,
+  var petLegacyDB = new Sequelize(configs['local'].database,
   configs['local'].username, configs['local'].password, configs['local']);
 }
 
-var owners = sherpaDB.define('owners', {
+var owners = petLegacyDB.define('owners', {
   first_name: Sequelize.STRING(100),
   last_name: Sequelize.STRING(100),
   address: Sequelize.STRING(100),
@@ -29,7 +29,21 @@ var owners = sherpaDB.define('owners', {
   phone: Sequelize.STRING(20)
 });
 
-sherpaDB.sync().then(function() {
+var pets = petLegacyDB.define('pets', {
+  owner_id: Sequelize.INTEGER,
+  first_name: Sequelize.STRING(100),
+  last_name: Sequelize.STRING(100),
+  AKC_registered_name: Sequelize.STRING(100),
+  breed: Sequelize.STRING(50),
+  zip_code: Sequelize.STRING(10),
+  birthdate: Sequelize.DATE,
+  gender: Sequelize.STRING(10),
+  pic: Sequelize.STRING(255)
+});
+
+
+
+petLegacyDB.sync().then(function() {
   // The line below for test purposes
   // petLegacyTests();
 });
@@ -37,7 +51,7 @@ sherpaDB.sync().then(function() {
 function petLegacyTests() {
   // Create a test user
   owners.create({
-    email: 'kelly@sherpa.com',
+    email: 'kelly@petlegacy.com',
     last_name: 'rene',
     first_name: 'kelly',
     phone: '123-456-7890',
@@ -48,7 +62,7 @@ function petLegacyTests() {
     // Update the email for the user
     var userId = results.id;
     owners.update({
-      email: 'kelly@imnotyoursherpa.com'
+      email: 'kelly@imnotyourpet.com'
     }, {
       where: {
         id: userId
@@ -72,6 +86,7 @@ function petLegacyTests() {
 }
 
 var db = {
-	owners: owners
+	owners: owners,
+  pets: pets,
 };
 module.exports = db;
