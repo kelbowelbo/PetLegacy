@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Button, Card, Row, Col } from 'react-materialize';
+// import { Button, Card, Row, Col } from 'react-materialize';
 import './App.css';
 import LoginRegister from './components/login_register.js';
 import GridContainer from './components/grid-container.js';
@@ -17,6 +17,7 @@ class App extends Component {
           <Route exact path="/grid" component={GridContainer} />
         </div>
       </Router>
+
     );
   }
 }
