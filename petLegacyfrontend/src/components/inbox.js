@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 class InBox extends Component {
   render() {
     return (
-      // <div className="????">That's a good boy!!!</div>
-       
+      <div>This is the Inbox Component</div>
+
+
     );
   }
 }

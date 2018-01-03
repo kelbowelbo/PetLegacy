@@ -18,6 +18,8 @@ const FACEBOOK_APP_SECRET = process.env.facebook_secret;
 const PORT = 8080;
 const app = express();
 
+require('../app/route/api-routes.js')(app)
+
 // App setup
 passport.use(new facebookStrategy({
 	clientID: FACEBOOK_APP_ID,
@@ -68,15 +70,15 @@ app.get(
 	'/auth/facebook/done',
 	// TODO: change these URLs to make sense to the frontend.
 	passport.authenticate('facebook', {
-		successRedirect: 'http://localhost:3000/private',
+		successRedirect: 'http://localhost:3000/grid',
 		failureRedirect: '/'
 	}));
 
 // the below private page is the authentication page that you have to login to to see.
-app.get('/private', (req, res) => {
-	console.log("made it to private page");
-	res.send('<h1>This is a private page</h1>');
-});
+// app.get('/grid', (req, res) => {
+// 	console.log("made it to private page");
+// 	res.send('<h1>This is a private page</h1>');
+// });
 
 function isLoggedIn() {
 	return function(req, res, next) {

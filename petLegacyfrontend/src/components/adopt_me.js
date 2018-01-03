@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 class AdoptMe extends Component {
   render() {
     return (
-      // <div className="?????">I want to adopt!</div>
-       
+      <div>This is the AdoptMe Component</div> 
     );
   }
 }

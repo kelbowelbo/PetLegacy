@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Button, Card, Row, Col } from 'react-materialize';
 import './App.css';
 import LoginRegister from './components/login_register.js';
 import GridContainer from './components/grid-container.js';
@@ -12,13 +13,8 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Welcome to Pet Legacy</h1>
           </header>
-          <p className="App-intro">
-            No need to register, just login below.
-          </p>
-          <LoginRegister />
-          <GridContainer />
           <Route exact path="/" component={LoginRegister} />
-
+          <Route exact path="/grid" component={GridContainer} />
         </div>
       </Router>
     );
