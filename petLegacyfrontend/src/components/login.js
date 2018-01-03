@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button} from 'react-materialize';
 
 
-class LoginRegister extends Component {
+class Login extends Component {
   render() {
     return (
       <div>
@@ -15,4 +15,4 @@ class LoginRegister extends Component {
   }
 }
 
-export default LoginRegister;
+export default Login;

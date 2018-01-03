@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MemberInfo from './member_info.js';
+import OwnerInfo from './owner_info.js';
 import PicCarousel from './piccarousel.js';
 import UserAccount from './account.js';
 import InBox from './inbox.js';
@@ -14,7 +14,7 @@ class GridContainer extends Component {
   render() {
     return (
         <div className="App">
-          <MemberInfo />
+          <OwnerInfo />
           <PicCarousel />
           <UserAccount />
           <InBox />
@@ -23,9 +23,9 @@ class GridContainer extends Component {
           <PlayDate />
           <RegisterPet />
           <ResponsibleBreeding />
-          <Search />
         </div>
     );
+    // <Search />
   }
 }
 
