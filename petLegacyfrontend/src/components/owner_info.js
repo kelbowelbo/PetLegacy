@@ -6,17 +6,19 @@ class OwnerInfo extends Component {
   render() {
     return (
       <div>
-        This is the Owner Information Component
+        <h6 class="component_title"><i><i class="material-icons">people</i>    Tell us about yourself. You only have to do this once, we promise!    <i class="material-icons">people</i></i></h6>
         <Row>
-          <Input placeholder="Placeholder" s={6} label="First Name" />
-          <Input s={6} label="Last Name" />
-          <Input s={12} label="disabled" defaultValue="I am not editable" disabled />
-          <Input s={12} label="address" />
-          <Input s={6} label="zip code" />
-          <Input type="email" label="Email" s={12} />
-          <Input s={12} label="phone" />
-          <Input s={12} label="picture" />
+          <Input s={6} label="First Name (the human, not the pup)" />
+          <Input s={6} label="Last Name (the human, not the pup)" />
+          <Input s={12} label="Address" />
+          <Input s={6} label="Zip Code" />
+          <Input s={6} label="Phone" />
+          <Input type="email" label="Email (again, the human's, not the pup's)" s={12} />
+          <Input s={12} label="Picture (you can tell a lot about a pup by the owner, so show us your pearly whites!)" />
         </Row>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+        </button>
       </div>
     );
   }

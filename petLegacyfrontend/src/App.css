@@ -15,9 +15,15 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3.5em;
+  font-family: fantasy;
 }
 
+.component_title {
+  font-size: 2.0em;
+  font-family: fantasy;
+  padding: 20px;
+}
 .App-intro {
   font-size: large;
 }
@@ -35,6 +41,49 @@
   grid-template-columns: 200px 200px 200px;
   grid-gap: 25px;
 }
+.bone{
+  position: relative;
+  width: 600px;
+}
+.s1, .s2, .s3, .s4{
+  background:#fff;
+  height: 200px;
+  width: 200px;
+  border: 5px solid #000;
+  border-radius: 200px;
+  position:absolute;
+}
+.s1{
+  left: 0;
+}
+.s2{
+  right: 0;
+}
+.s3{
+  top: 205px;
+}
+.s4{
+  right: 0;
+  top:205px;
+}
+.centerbone{
+  background:#fff;
+  height: 250px;
+  width: 188px;
+  border: 5px solid #000;
+  position:absolute;
+  left: 205px;
+  top: 78px;
+  border-width: 5px 0 5px;
+}
+.clean{
+  background:#fff;
+  width: 400px;
+  height:100%;
+  position: absolute;
+  left:-104px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
