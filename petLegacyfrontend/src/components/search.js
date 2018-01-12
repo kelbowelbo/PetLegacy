@@ -1,84 +1,67 @@
 import React, { Component } from 'react';
 import { Input, Row, Col } from 'react-materialize';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import Gender from './gender.js';
 import Breed from './breed.js';
-// const utils = require('../backend_utils.js')
+const utils = require('../backend_utils.js');
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      breed: 'unknown',
+      owner_id: 0,
+      breed: '',
       gender: '',
       zip_code: ''
     };
-    this.handleBreedChange = this.handleBreedChange.bind(this);
-    this.handleGenderChange = this.handleGenderChange.bind(this);
-    this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onBreedChange = this.onBreedChange.bind(this);
+    this.onGenderChange = this.onGenderChange.bind(this);
   }
-  handleBreedChange(breed) {
-    const value = breed ? breed.value : '';
-    console.log(`handleBreedChange: ${JSON.stringify(value)}`);
+  componentDidMount() {
+    utils.getCurrentOwnerId(
+      (ownerId) => {
+        this.setState({owner_id: ownerId});
+      },
+      (error) => {
+        console.log(`Error retrieving owner id: ${error}`);
+      }
+    );
+  }
+  onBreedChange(value) {
     this.setState({breed: value});
   }
-  handleGenderChange(gender) {
-    const value = gender ? gender.value : '';
-    console.log(`handleGenderChange: ${JSON.stringify(value)}`);
+  onGenderChange(value) {
     this.setState({gender: value});
   }
-  handleZipCodeChange(event) {
-    this.setState({zip_code: event.target.value});
-    console.log('handleZipCodeChange: ${event}');
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
   }
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handleSubmit: ');
+    this.props.history.push(`/search-results/${this.state.owner_id}/${this.state.breed}/${this.state.gender}/${this.state.zip_code}`);
   }
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <h4 className="component_title"><i className="material-icons"></i>  Search for your pup mate, or a pup date.  <i className="material-icons"></i></h4>
         <Row>
+          <div className="col m3">
+            <Gender value={this.state.gender} onChange={this.onGenderChange} />
+          </div>
+          <div className="col m6">
+            <Breed value={this.state.breed} onChange={this.onBreedChange} />
+          </div>
+          <Input m={3} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleChange} />
+        </Row>
+        <Row>
+          <br /><br />
           <Col>
-            <Input s={6} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleZipCodeChange} />
-          </Col>
-          <Col>
-            <label>Gender</label>
-            <Select name="gender" value={this.state.gender} onChange={this.handleGenderChange}
-              options={[
-                { value: "female", label: "Female" },
-                { value: "male", label: "Male" }
-              ]}
-            />
-          </Col>
-          <Col>
-            <label>What breed is your pup interested in mating or dating?</label>
-            <Select name="breed" value={this.state.breed} onChange={this.handleBreedChange}
-              options={[
-                { value: "sheltie_blue_merle", label: "Sheltie - Blue Merle" },
-                { value: "sheltie_sable", label: "Sheltie - Sable" },
-                { value: "collie_rough", label: "Collie - Rough" },
-                { value: "golden_retriever", label: "Golden Retriever" },
-                { value: "pit_bull_terrier", label: "Pit Bull Terrier" },
-                { value: "sharpei", label: "Sharpei" },
-                { value: "labrador_retriever_black", label: "Labrador Retriever - black" },
-                { value: "labrador_retriever_yellow", label: "Labrador Retriever - yellow" },
-                { value: "labrador_retriever_chocolate", label: "Labrador Retriever - chocolate" },
-                { value: "beagle", label: "Beagle" },
-                { value: "boxer", label: "Boxer" },
-                { value: "pug", label: "Pug" },
-                { value: "border_collie", label: "Border Collie" },
-                { value: "poodle", label: "Poodle" }
-              ]}
-              />
+            <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+              <i className="material-icons right">send</i>
+            </button>
           </Col>
         </Row>
-        <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i className="material-icons right">send</i>
-        </button>
       </form>
     );
   }

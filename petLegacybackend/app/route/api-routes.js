@@ -145,17 +145,17 @@ app.get("/api/pets/owner/:id", isLoggedIn(), function(req, res){
 	})
 });
 
-app.get("/api/pets/:gender/:breed/:zip_code", isLoggedIn(), function(req, res) {
-	db.pets.findAll({
-		where: {
-			gender: req.params.gender,
-			breed: req.params.breed,
-			zip_code: req.params.zip_code
-		}
-	})
-	.then(function(results){
-		res.json(results);
-	})
+app.get("/api/petsearch/:owner_id/:gender/:breed/:zip_code", isLoggedIn(), function(req, res) {
+	// console.log(`/api/petsearch/${req.params.owner_id}/${req.params.breed}/${req.params.gender}/${req.params.zip_code}`);
+	// console.log(`params: ${JSON.stringify(req.params)}`);
+	db.petSearch(
+		req.params.owner_id,
+		req.params.breed,
+		req.params.gender,
+		req.params.zip_code,
+		function(results){
+			res.json(results);
+		});
 });
 
 module.exports = app;

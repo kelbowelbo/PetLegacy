@@ -6,7 +6,8 @@ class PetList extends Component {
     super(props);
     this.state = {
       owner_id: 0,
-      pets: []
+      pets: [],
+      pics: utils.breedPicsMap()
     };
     this.onPetEditClick = this.onPetEditClick.bind(this);
   }
@@ -48,6 +49,10 @@ class PetList extends Component {
     console.log(`onPetEditClick: ${event.target.id}`);
     this.props.history.push(`/pet/${this.state.owner_id}/${event.target.id}`);
   }
+  getBreedPic(breed) {
+    const picPath = this.state.pics[breed];
+    return <img src={picPath} alt={picPath} height="64" width="64" />;
+  }
   render() {
     console.log(`render: ${this.state.owner_id}`);
     return (
@@ -56,6 +61,7 @@ class PetList extends Component {
         <table>
           <thead>
             <tr>
+              <th>Picture</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>AKC Name</th>
@@ -70,6 +76,7 @@ class PetList extends Component {
             {this.state.pets.map((pet) => {
               return (
                 <tr key={pet.id}>
+                  <td>{this.getBreedPic(pet.breed)}</td>
                   <td>{pet.first_name}</td>
                   <td>{pet.last_name}</td>
                   <td>{pet.AKC_registered_name}</td>

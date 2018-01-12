@@ -8,6 +8,7 @@ import PetInfo from './components/pet_info.js';
 import PetList from './components/pet_list.js';
 import ResponsibleBreeding from './components/responsible_breeding.js';
 import Search from './components/search.js';
+import SearchResults from './components/search_results.js';
 // import PicCarousel from './components/piccarousel.js';
 // import UserAccount from './components/account.js';
 // import InBox from './components/inbox.js';
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/pets" component={PetList} />
           <Route exact path="/responsible-breeding" component={ResponsibleBreeding} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/search-results/:ownerId/:breed/:gender/:zipCode" component={SearchResults} />;
           <Route exact path="/pet/:ownerId/:petId" component={PetInfo} />
         </div>
       </Router>

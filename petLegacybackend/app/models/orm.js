@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 var configs = {
   "local": {
@@ -93,9 +94,26 @@ function ensureUserExists(authId, done) {
   })
 }
 
+function petSearch(ownerId, breed, gender, zipCode, done) {
+  pets.findAll({
+    where: {
+      gender: gender,
+      breed: breed,
+      zip_code: zipCode,
+      owner_id: {
+        [Op.ne]: ownerId
+      }
+    }
+  })
+  .then(function(results){
+    done(results);
+  })
+}
+
 var db = {
   owners: owners,
   pets: pets,
   ensureUserExists,
+  petSearch,
 };
 module.exports = db;
