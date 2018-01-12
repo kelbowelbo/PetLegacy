@@ -15,8 +15,8 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  /*animation: App-logo-spin infinite 20s linear;*/
+  height: 20px;
 }
 
 .App-header {
@@ -42,6 +42,7 @@
 
 .login {
   font-size: 0.5 em;
+  font-family: fantasy;
   color: purple;
   text-align: left;
   padding: 20px;
@@ -95,7 +96,10 @@
   position: absolute;
   left:-104px;
 }
-
+.active {
+  font-size: 2.0em;
+  font-family: fantasy;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

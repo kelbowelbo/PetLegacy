@@ -30,7 +30,6 @@ class OwnerInfo extends Component {
           email: owner.email || '',
           phone: owner.phone || ''
         });
-        this.forceUpdate();
       },
       (error) => {
         console.log(`Unexpected error: "${error}"`);
@@ -57,7 +56,7 @@ class OwnerInfo extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h6 className="component_title"><i><i className="material-icons">people</i>    Tell us about yourself. You only have to do this once, we promise!    <i className="material-icons">people</i></i></h6>
+          <h4 className="component_title">   Tell us about yourself. You only have to do this once, we promise! </h4>
           <Row>
             <Input s={6} labelClassName="active" placeholder="" name="first_name" value={this.state.first_name} label="First Name (the human, not the pup)" onChange={this.handleChange} />
             <Input s={6} labelClassName="active" placeholder="" name="last_name" value={this.state.last_name} label="Last Name (the human, not the pup)" onChange={this.handleChange} />

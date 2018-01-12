@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize';
+import Breed from './breed.js';
+import Gender from './gender.js';
 const utils = require('../backend_utils.js');
 
 
@@ -8,6 +10,8 @@ class PetInfo extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onBreedChange = this.onBreedChange.bind(this);
+    this.onGenderChange = this.onGenderChange.bind(this);
     this.state = {
       id: this.props.match.params.petId,
       owner_id: this.props.match.params.ownerId,
@@ -31,7 +35,6 @@ class PetInfo extends Component {
           AKC_registered_name: pet.AKC_registered_name || '',
           breed: pet.breed || '',
           gender: pet.gender || '',
-          birthdate: pet.birthdate || '',
           zip_code: pet.zip_code || ''
         });
         this.forceUpdate();
@@ -59,18 +62,30 @@ class PetInfo extends Component {
       }
     );
   }
+  onBreedChange(value) {
+    this.setState({breed: value});
+  }
+  onGenderChange(value) {
+    this.setState({gender: value});
+  }
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h6 className="component_title"><i><i className="material-icons"></i>    Tell us about your pup. You may add as many as you please!    <i className="material-icons">paw</i></i></h6>
+          <h4 className="component_title"><i><i className="material-icons"></i>  Tell us about your pup.  <i className="material-icons"></i></i></h4>
           <Row>
             <Input s={6} labelClassName="active" placeholder="" name="first_name" value={this.state.first_name} label="First Name (the pup, not the human)" onChange={this.handleChange} />
             <Input s={6} labelClassName="active" placeholder="" name="last_name" value={this.state.last_name} label="Last Name (the pup, not the human)" onChange={this.handleChange} />
             <Input s={12} labelClassName="active" placeholder="" name="AKC_registered_name" value={this.state.AKC_registered_name} label="AKC Name (if your pup has one, if not, no worries, neither do you)" onChange={this.handleChange} />
-            <Input s={6} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleChange} />
-            <Input s={6} labelClassName="active" placeholder="" name="gender" value={this.state.gender} label="Gender" onChange={this.handleChange} />
-            <Input s={12} labelClassName="active" placeholder="" name="breed" value={this.state.breed} label="Breed (don't end up in obedience school, spelling counts! Golden Retriever, Sheltie, Pug, Black Laborador Retriever, Pit Bull Mix, etc.)" onChange={this.handleChange} />
+          </Row>
+          <Row>
+            <Input m={3} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleChange} />
+            <div className="col m3">
+              <Gender value={this.state.gender} onChange={this.onGenderChange} />
+            </div>
+            <div className="col m6">
+              <Breed value={this.state.breed} onChange={this.onBreedChange} />
+            </div>
           </Row>
           <button className="btn waves-effect waves-light" type="submit" name="action">Submit
             <i className="material-icons right">send</i>

@@ -14,7 +14,7 @@ class GridContainer extends Component {
           </div>
           <div className="hex-row shift">
             <div className="hexagon" onClick={() => this.props.history.push('/owner')}>
-              Owner
+              Enter Owner Info
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -25,7 +25,7 @@ class GridContainer extends Component {
           </div>
           <div className="hex-row">
             <div className="hexagon" onClick={() => this.props.history.push('/pets')}>
-              Pets
+              Enter Your Pet Info
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -34,7 +34,7 @@ class GridContainer extends Component {
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/responsible-breeding')}>
-              Breeding
+              Responsible Breeding Sources
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -45,7 +45,7 @@ class GridContainer extends Component {
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/search')}>
-              Search
+              Search for a mate or a date
               <div className="face1"></div>
               <div className="face2"></div>
             </div>

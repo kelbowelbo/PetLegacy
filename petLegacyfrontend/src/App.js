@@ -21,7 +21,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Welcome to Pet Legacy</h1>
+            <div className="App-logo" img src="./logo.png">
+              <h1 className="App-title">Welcome to Pet Legacy</h1>
+            </div>
           </header>
           <Route exact path="/" component={Login} />
           <Route exact path="/grid" component={GridContainer} />
