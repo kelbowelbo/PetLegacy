@@ -14,13 +14,13 @@ class GridContainer extends Component {
   render() {
     return (
         <div className="App">
-          <div class="bone">
-            <div class="s1"></div>
-            <div class="s2"></div>
-            <div class="s3"></div>
-            <div class="s4"></div>
-            <div class="centerbone">
-              <div class="clean"></div>
+          <div className="bone">
+            <div className="s1"></div>
+            <div className="s2"></div>
+            <div className="s3"></div>
+            <div className="s4"></div>
+            <div className="centerbone">
+              <div className="clean"></div>
             </div>
           </div>
           <OwnerInfo />

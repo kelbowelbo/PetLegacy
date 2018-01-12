@@ -10,6 +10,7 @@ const request = require('request');
 // express to manage the session for you.  Notes who is making the request.  The front end doesn't authenticate, the backed is.
 // what it amounts to an array of session ids.
 const session = require('express-session');
+const bodyParser = require('body-parser');
 
 // FB App
 const FACEBOOK_APP_ID = '520230858343977';
@@ -17,8 +18,6 @@ const FACEBOOK_APP_SECRET = process.env.facebook_secret;
 
 const PORT = 8080;
 const app = express();
-
-require('../app/route/api-routes.js')(app)
 
 // App setup
 passport.use(new facebookStrategy({
@@ -28,10 +27,6 @@ passport.use(new facebookStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
 	console.log(`${profile.displayName} has logged in`);
-	console.log(`accessToken=${accessToken}`);
-	console.log(`refreshToken=${refreshToken}`);
-	console.log(`profile=${JSON.stringify(profile, "", "  ")}`);
-	console.log(`auth_id=${profile.id}`);
 	profile.accessToken = accessToken;
 	done(null, profile);
 }));
@@ -53,6 +48,7 @@ app.use(session({
 	saveUninitialized: false
 }));
 
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -75,20 +71,8 @@ app.get(
 		failureRedirect: '/'
 	}));
 
-// the below private page is the authentication page that you have to login to to see.
-// app.get('/grid', (req, res) => {
-// 	console.log("made it to private page");
-// 	res.send('<h1>This is a private page</h1>');
-// });
-
-function isLoggedIn() {
-	return function(req, res, next) {
-		if (req.isAuthenticated()) {
-			return next();
-		}	else {
-			res.returnStatus(401);
-		}
-	}
-}
+// Add api routes
+const apiRoutes = require('../app/route/api-routes.js');
+app.use(apiRoutes);
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
