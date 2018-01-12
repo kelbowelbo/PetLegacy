@@ -6,10 +6,13 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <p className="App-intro">
-          No need to register, just login below.
-        </p>
-        <Button waves='light' node='a' href='/auth/facebook'> Login Using facebook </Button>
+        <div>
+          <p className="App-intro">
+            No need to register, just login below.
+          </p>
+          <Button waves='light' node='a' href='/auth/facebook'> Login Using facebook </Button>
+        </div>
+        <div className='background-image' />
       </div>
     );
   }
