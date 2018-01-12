@@ -86,8 +86,16 @@ function petLegacyTests() {
   });
 }
 
+function ensureUserExists(authId, done) {
+  db.owners.upsert({auth_id: authId})
+  .then(function(results){
+    done();
+  })
+}
+
 var db = {
-	owners: owners,
+  owners: owners,
   pets: pets,
+  ensureUserExists,
 };
 module.exports = db;

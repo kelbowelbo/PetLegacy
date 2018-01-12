@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize';
 
 class PetInfo extends Component {
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("PetInfo.handleSubmit");
+  }
   render() {
+    console.log(`PetInfo.render: ownerId: ${this.props.ownerId}`);
     return (
       <div>
-        <h6 className="component_title"><i><i className="material-icons"></i>    Tell us about your pup. You may add as many as you please!    <i className="material-icons">paw</i></i></h6>
+        <form onSubmit={this.handleSubmit}>
+          <h6 className="component_title"><i><i className="material-icons"></i>    Tell us about your pup. You may add as many as you please!    <i className="material-icons">paw</i></i></h6>
           <Row>
             <Input s={6} label="First Name (the pup, not the human)" />
             <Input s={6} label="Last Name (the pup, not the human)" />
@@ -15,9 +21,10 @@ class PetInfo extends Component {
             <Input s={12} label="Breed (don't end up in obedience school, spelling counts! Golden Retriever, Sheltie, Pug, Black Laborador Retriever, Pit Bull Mix, etc.)"/>
             <Input s={12} label="Picture (you can tell a lot about a person by their pup, so show us pup's chompers!)" />
           </Row>
-        <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i className="material-icons right">send</i>
-        </button>
+          <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i className="material-icons right">send</i>
+          </button>
+        </form>
       </div>
     );
   }

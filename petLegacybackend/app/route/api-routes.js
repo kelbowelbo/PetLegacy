@@ -5,23 +5,30 @@ const app = express();
 // Set skipAuth to true to bypass authentication
 const skipAuth = false;
 
-//OWNER
-// to use and modify pet's owner information
+// Authentication check
 function isLoggedIn() {
 	return function(req, res, next) {
 		if (skipAuth) {
 			// Don't authenticate
 			return next();
 		}
+		// console.log("isLoggedIn: req.headers:", req.headers);
+		// console.log("isLoggedIn: req.body:", req.body);
 		if (req.isAuthenticated()) {
+			// console.log("authenticated already");
 			return next();
 		} else {
+			console.log("NOT authenticated");
 			res.redirect('/auth/facebook');
 		}
 	}
 }
 
+
+//OWNER
+// to use and modify pet's owner information
 app.get("/api/owner/:id", isLoggedIn(), function(req, res){
+	// console.log(`/api/owner/${req.params.id}`);
 	db.owners.find({
 		where: {
 			id: req.params.id
@@ -32,26 +39,10 @@ app.get("/api/owner/:id", isLoggedIn(), function(req, res){
 	})
 });
 
-app.get("/api/myOwnerId/", isLoggedIn(), function(req, res){
-	// This function requires authentication to be on.
-	console.log(`/api/myOwnerId for ${req.user.id}`);
-	db.owners.find({
-		where: {
-			auth_id: req.user.id
-		},
-		attributes: [
-			'id'
-		]
-	})
-	.then(function(results){
-		res.json(results);
-	})
-});
-
 app.post("/api/newOwner", isLoggedIn(), function(req, res){
-	console.log("req.body:", req.body);
 	db.owners.create({
 		email: req.body.email,
+		auth_id: req.body.auth_id,
 		first_name: req.body.first_name,
 		last_name: req.body.last_name,
 		phone: req.body.phone,
@@ -62,9 +53,35 @@ app.post("/api/newOwner", isLoggedIn(), function(req, res){
 	.then(function(results){
 		res.send({id: results.id});
 	})
-	.catch(function(err) {
-		console.log("something");
-	});
+});
+
+app.get("/api/getLoggedInOwner", isLoggedIn(), function(req, res){
+	// This function requires authentication to be on.
+	db.owners.find({
+		where: {
+			auth_id: req.user.id
+		}
+	})
+	.then(function(results){
+		res.json(results);
+	})
+});
+
+app.post("/api/updateLoggedInOwner", isLoggedIn(), function(req, res){
+	const obj = {
+		email: req.body.email,
+		auth_id: req.user.id,
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		phone: req.body.phone,
+		address: req.body.address,
+		zip_code: req.body.zip_code,
+		pic: req.body.pic
+	};
+	db.owners.upsert(obj)
+	.then(function(results){
+		res.send({results: results});
+	})
 });
 
 
@@ -82,7 +99,6 @@ app.get("/api/pet/:id", isLoggedIn(), function(req, res){
 });
 
 app.post("/api/newPet", isLoggedIn(), function(req, res){
-	console.log("req.body:", req.body);
 	db.pets.create({
 		owner_id: req.body.owner_id,
 		first_name: req.body.first_name,
@@ -97,9 +113,6 @@ app.post("/api/newPet", isLoggedIn(), function(req, res){
 	.then(function(results){
 		res.send({id: results.id});
 	})
-	.catch(function(err) {
-		console.log("something");
-	});
 });
 
 app.get("/api/pets/owner/:id", isLoggedIn(), function(req, res){

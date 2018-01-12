@@ -37,7 +37,7 @@ passport.serializeUser(function(user, done) {
 });
 // calls every time it gets it out of the cache, every time the user makes a
 // request, you get a session cookie and we look up that users info, passport will
-// use this to id the user.  ????
+// use this to id the user.
 passport.deserializeUser(function(user, done) {
 	done(null, user);
 });
@@ -65,11 +65,18 @@ app.get(
 
 app.get(
 	'/auth/facebook/done',
-	// TODO: change these URLs to make sense to the frontend.
 	passport.authenticate('facebook', {
-		successRedirect: 'http://localhost:3000/grid',
+		successRedirect: '/loggedin',
 		failureRedirect: '/'
 	}));
+
+const db = require('../app/models/orm.js');
+app.get('/loggedin', (req, res) => {
+	db.ensureUserExists(req.user.id, () => {
+		// TODO: need to do something else for heroku
+		res.redirect('http://localhost:3000/grid');
+	});
+});
 
 // Add api routes
 const apiRoutes = require('../app/route/api-routes.js');
