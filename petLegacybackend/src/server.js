@@ -30,7 +30,8 @@ function(accessToken, refreshToken, profile, done) {
 	console.log(`${profile.displayName} has logged in`);
 	console.log(`accessToken=${accessToken}`);
 	console.log(`refreshToken=${refreshToken}`);
-	console.log(`profile=${profile}`);
+	console.log(`profile=${JSON.stringify(profile, "", "  ")}`);
+	console.log(`auth_id=${profile.id}`);
 	profile.accessToken = accessToken;
 	done(null, profile);
 }));

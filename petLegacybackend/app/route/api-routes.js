@@ -5,14 +5,14 @@ module.exports = function(app) {
 
 	app.use(bodyParser.json());
 
- //OWNER
-// to use and modify pet's owner information
+ 	//OWNER
+	// to use and modify pet's owner information
 
 	app.get("/api/owner/:id", function(req, res){
 		db.owners.find({
 			where: {
-          		id: req.params.id
-        	}
+        id: req.params.id
+      }
 		})
 		.then(function(results){
 			res.json(results);
@@ -44,8 +44,8 @@ module.exports = function(app) {
 	app.get("/api/pet/:id", function(req, res){
 		db.pets.find({
 			where: {
-							id: req.params.id
-					}
+				id: req.params.id
+			}
 		})
 		.then(function(results){
 			res.json(results);

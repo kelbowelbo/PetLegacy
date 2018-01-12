@@ -18,14 +18,15 @@ if (process.env.JAWSDB_URL) {
 }
 
 var owners = petLegacyDB.define('owners', {
+  auth_id: {
+    type: Sequelize.STRING(100), unique: true
+  },
   first_name: Sequelize.STRING(100),
   last_name: Sequelize.STRING(100),
   address: Sequelize.STRING(100),
   zip_code: Sequelize.STRING(10),
   country: Sequelize.STRING(50),
-  email: {
-    type: Sequelize.STRING(40), unique: true
-  },
+  email: Sequelize.STRING(40),
   phone: Sequelize.STRING(20)
 });
 
