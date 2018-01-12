@@ -1,9 +1,9 @@
 .background-image {
   margin: 0px;
-  margin-top: 60px;
+  margin-top: 20px;
   background-image: url('./media/images/white_golden_retriever.jpg');
   background-size: 60%;
-  height: 825px;
+  height: 700px;
   background-repeat: no-repeat;
   background-origin: content-box;
   background-position: top center;
@@ -16,36 +16,46 @@
 
 .App-logo {
   /*animation: App-logo-spin infinite 20s linear;*/
-  height: 20px;
+  height: 10px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  /**/This adjusts the box around "Welcome to Pet Legacy", the height will bring in the App-title
+  background-color: white;
+  height: 100px;
+  padding-top: 30px;
   color: white;
 }
 
 .App-title {
-  font-size: 3.5em;
+  font-size: 6.5em;
   font-family: fantasy;
+  color: teal;
+}
+
+.login_button {
+  color: white;
+  font-size: 2.0em;
+  padding-top: 5px;
 }
 
 .component_title {
   font-size: 2.0em;
   font-family: fantasy;
-  padding: 20px;
+  padding-top: 20px;
 }
 .App-intro {
-  font-size: large;
+  font-size: 4.5em;
+  font-family: fantasy;
+  color: black;
 }
 
 .login {
   font-size: 0.5 em;
   font-family: fantasy;
-  color: purple;
+  color: black;
   text-align: left;
-  padding: 20px;
+  padding: 10px;
 }
 
 .grid-container {
@@ -96,10 +106,12 @@
   position: absolute;
   left:-104px;
 }
-.active {
-  font-size: 2.0em;
+.input_labels {
+  font-size: 3.0em;
   font-family: fantasy;
+  padding: 20px;
 }
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

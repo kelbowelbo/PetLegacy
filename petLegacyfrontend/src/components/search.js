@@ -45,23 +45,29 @@ class Search extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h4 className="component_title"><i className="material-icons"></i>  Search for your pup mate, or a pup date.  <i className="material-icons"></i></h4>
-        <Row>
-          <div className="col m3">
-            <Gender value={this.state.gender} onChange={this.onGenderChange} />
+        <div class="container">
+          <div class="row">
+            <div class="col l6 l12">
+              <Row>
+                <div className="col m3">
+                  <Gender value={this.state.gender} onChange={this.onGenderChange} />
+                </div>
+                <div className="col m6">
+                  <Breed value={this.state.breed} onChange={this.onBreedChange} />
+                </div>
+                <Input m={3} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleChange} />
+              </Row>
+              <Row>
+                <br /><br />
+                <Col>
+                  <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i className="material-icons right">send</i>
+                  </button>
+                </Col>
+              </Row>
+            </div>
           </div>
-          <div className="col m6">
-            <Breed value={this.state.breed} onChange={this.onBreedChange} />
-          </div>
-          <Input m={3} labelClassName="active" placeholder="" name="zip_code" value={this.state.zip_code} label="Zip Code" onChange={this.handleChange} />
-        </Row>
-        <Row>
-          <br /><br />
-          <Col>
-            <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-              <i className="material-icons right">send</i>
-            </button>
-          </Col>
-        </Row>
+        </div>
       </form>
     );
   }

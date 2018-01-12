@@ -4,7 +4,6 @@ const utils = require('../backend_utils.js');
 class SearchResults extends Component {
   constructor(props) {
     super(props);
-    const mediaPath = '/images';
     this.state = {
       owner_id: this.props.match.params.ownerId,
       breed: this.props.match.params.breed,
@@ -35,7 +34,7 @@ class SearchResults extends Component {
   render() {
     return (
       <div>
-        <h6 className="component_title">My Pets</h6>
+        <h4 className="component_title">My Pets</h4>
         <table>
           <thead>
             <tr>

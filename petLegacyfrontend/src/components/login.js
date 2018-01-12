@@ -8,9 +8,9 @@ class Login extends Component {
       <div>
         <div>
           <p className="App-intro">
-            No need to register, just login below.
+            Mate, Date, or Adopt!
           </p>
-          <Button waves='light' node='a' href='/auth/facebook'> Login Using facebook </Button>
+          <Button waves='light' className='login_button' node='a' href='/auth/facebook'> Login Using facebook </Button>
         </div>
         <div className='background-image' />
       </div>

@@ -7,7 +7,8 @@ class GridContainer extends Component {
       <div className="menu-container">
         <div className="hex-wrapper">
           <div className="hex-row">
-            <div className="hexagon">
+            <div className="hexagon" onClick={() => this.props.history.push('/')}>
+              <br></br>Log Out
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -25,7 +26,7 @@ class GridContainer extends Component {
           </div>
           <div className="hex-row">
             <div className="hexagon" onClick={() => this.props.history.push('/pets')}>
-              Enter Your Pet Info
+              Enter Pup<br></br>Info
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -34,7 +35,7 @@ class GridContainer extends Component {
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/responsible-breeding')}>
-              Responsible Breeding Sources
+              Responsible Breeding
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -45,7 +46,7 @@ class GridContainer extends Component {
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/search')}>
-              Search for a mate or a date
+              Search a mate or date
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -53,7 +54,8 @@ class GridContainer extends Component {
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
-            <div className="hexagon">
+            <div className="hexagon" onClick={() => this.props.history.push('/adopt_me')}>
+              I want to adopt a pup!
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
