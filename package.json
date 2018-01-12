@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "heroku-postbuild": "cd ../petLegacyfrontend && yarn --production=false && yarn run build"
+    "heroku-postbuild": "cd ./frontend && yarn --production=false && yarn run build"
   },
   "author": "Kelly Wenzel",
   "license": "ISC",
