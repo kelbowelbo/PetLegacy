@@ -14,17 +14,25 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 // FB App
-const FACEBOOK_APP_ID = '520230858343977';
+const FACEBOOK_APP_ID = process.env.facebook_app_id || '520230858343977';
 const FACEBOOK_APP_SECRET = process.env.facebook_secret;
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+var myURL = `http://localhost:8080`;
+var myFbCallbackURL = `${myURL}/auth/facebook/done`;
+if (process.env.JAWSDB_URL) {
+	// Running in heroku.
+	myFbCallbackURL = `/auth/facebook/done`;
+	myURL = `https://infinite-castle-11256.herokuapp.com`;
+}
+
 // App setup
 passport.use(new facebookStrategy({
 	clientID: FACEBOOK_APP_ID,
 	clientSecret: FACEBOOK_APP_SECRET,
-	callbackURL: `http://localhost:${PORT}/auth/facebook/done`
+	callbackURL: myFbCallbackURL
 },
 function(accessToken, refreshToken, profile, done) {
 	console.log(`${profile.displayName} has logged in`);
@@ -43,6 +51,7 @@ passport.deserializeUser(function(user, done) {
 	done(null, user);
 });
 
+app.enable('trust proxy');
 app.use(session({
 	secret: 'arbitrary string',
 	resave: false,
@@ -52,16 +61,6 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../petLegacyfrontend/build')));
-
-app.get('/', (req, res) => {
-	let body = '<h1>oauth facebook homepage</h1>';
-	// this body += is the same as body = body + whatever
-	body += '<a href="/auth/facebook"> Click to log in</a>';
-	res.send(body);
-});
 
 app.get(
 	'/auth/facebook',
@@ -77,8 +76,11 @@ app.get(
 const db = require('../app/models/orm.js');
 app.get('/loggedin', (req, res) => {
 	db.ensureUserExists(req.user.id, () => {
-		// TODO: need to do something else for heroku
-		res.redirect('http://localhost:3000/grid');
+		var gridURL = `http://localhost:3000/grid`;
+		if (process.env.JAWSDB_URL) {
+			gridURL = `/grid`;
+		}
+		res.redirect(gridURL);
 	});
 });
 
@@ -86,10 +88,15 @@ app.get('/loggedin', (req, res) => {
 const apiRoutes = require('../app/route/api-routes.js');
 app.use(apiRoutes);
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '../frontend/build/index.html'));
-});
+if (process.env.JAWSDB_URL) {
+	// Serve static files from the React app
+	app.use(express.static(path.join(__dirname, '/../frontend/build')));
+
+	// The "catchall" handler: for any request that doesn't
+	// match one above, send back React's index.html file.
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
+	});
+}
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
