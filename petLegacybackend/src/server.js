@@ -11,12 +11,13 @@ const request = require('request');
 // what it amounts to an array of session ids.
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // FB App
 const FACEBOOK_APP_ID = '520230858343977';
 const FACEBOOK_APP_SECRET = process.env.facebook_secret;
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 // App setup
@@ -52,6 +53,9 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../petLegacyfrontend/build')));
+
 app.get('/', (req, res) => {
 	let body = '<h1>oauth facebook homepage</h1>';
 	// this body += is the same as body = body + whatever
@@ -81,5 +85,11 @@ app.get('/loggedin', (req, res) => {
 // Add api routes
 const apiRoutes = require('../app/route/api-routes.js');
 app.use(apiRoutes);
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '../petLegacyfrontend/build/index.html'));
+});
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
