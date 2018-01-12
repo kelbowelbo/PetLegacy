@@ -115,6 +115,25 @@ app.post("/api/newPet", isLoggedIn(), function(req, res){
 	})
 });
 
+app.post("/api/updatePet", isLoggedIn(), function(req, res){
+	const obj = {
+		id: req.body.id,
+		owner_id: req.body.owner_id,
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		AKC_registered_name: req.body.AKC_registered_name,
+		breed: req.body.breed,
+		zip_code: req.body.zip_code,
+		birthdate: req.body.birthdate,
+		gender: req.body.gender,
+		pic: req.body.pic
+	};
+	db.pets.upsert(obj)
+	.then(function(results){
+		res.send({results: results});
+	})
+});
+
 app.get("/api/pets/owner/:id", isLoggedIn(), function(req, res){
 	db.pets.findAll({
 		where: {
@@ -126,11 +145,12 @@ app.get("/api/pets/owner/:id", isLoggedIn(), function(req, res){
 	})
 });
 
-app.get("/api/pets/:gender/:breed", isLoggedIn(), function(req, res) {
+app.get("/api/pets/:gender/:breed/:zip_code", isLoggedIn(), function(req, res) {
 	db.pets.findAll({
 		where: {
 			gender: req.params.gender,
-			breed: req.params.breed
+			breed: req.params.breed,
+			zip_code: req.params.zip_code
 		}
 	})
 	.then(function(results){

@@ -1,5 +1,5 @@
 
-module.exports.getFromBackend = function(url, doneCb, errorCb) {
+function getFromBackend(url, doneCb, errorCb) {
   fetch(
     url,
     {
@@ -21,7 +21,7 @@ module.exports.getFromBackend = function(url, doneCb, errorCb) {
   });
 }
 
-module.exports.postToBackend = function(url, obj, doneCb, errorCb) {
+function postToBackend(url, obj, doneCb, errorCb) {
   fetch(
     url,
     {
@@ -46,3 +46,30 @@ module.exports.postToBackend = function(url, obj, doneCb, errorCb) {
     errorCb(error);
   });
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+function getCurrentOwnerId(doneCb, errorCb) {
+=======
+
+function getCurrentOwnerId(url, obj, doneCb, errorCb) {
+>>>>>>> 259c67b0... some new orm stuff
+  getFromBackend(
+    '/api/getLoggedInOwner',
+    (owner) => {
+      doneCb(owner.id);
+    },
+    errorCb
+  );
+}
+
+module.exports = {
+  getFromBackend: getFromBackend,
+  postToBackend: postToBackend,
+  getCurrentOwnerId: getCurrentOwnerId
+};
+<<<<<<< HEAD
+>>>>>>> b1022777... Added PetList component and got pet edits working.
+=======
+>>>>>>> 259c67b0... some new orm stuff

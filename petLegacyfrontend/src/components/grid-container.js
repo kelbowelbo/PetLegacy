@@ -24,8 +24,8 @@ class GridContainer extends Component {
             </div>
           </div>
           <div className="hex-row">
-            <div className="hexagon" onClick={() => this.props.history.push('/pet')}>
-              Pet
+            <div className="hexagon" onClick={() => this.props.history.push('/pets')}>
+              Pets
               <div className="face1"></div>
               <div className="face2"></div>
             </div>

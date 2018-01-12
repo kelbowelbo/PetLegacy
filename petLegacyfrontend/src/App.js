@@ -5,6 +5,7 @@ import Login from './components/login.js';
 import GridContainer from './components/grid-container.js';
 import OwnerInfo from './components/owner_info.js';
 import PetInfo from './components/pet_info.js';
+import PetList from './components/pet_list.js';
 import ResponsibleBreeding from './components/responsible_breeding.js';
 import Search from './components/search.js';
 // import PicCarousel from './components/piccarousel.js';
@@ -25,9 +26,10 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route exact path="/grid" component={GridContainer} />
           <Route exact path="/owner" component={OwnerInfo} />
-          <Route exact path="/pet" component={PetInfo} />
+          <Route exact path="/pets" component={PetList} />
           <Route exact path="/responsible-breeding" component={ResponsibleBreeding} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/pet/:ownerId/:petId" component={PetInfo} />
         </div>
       </Router>
     );
