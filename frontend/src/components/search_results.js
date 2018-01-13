@@ -12,6 +12,7 @@ class SearchResults extends Component {
       pets: [],
       pics: utils.breedPicsMap()
     };
+    this.onOwnerClick = this.onOwnerClick.bind(this);
   }
   componentDidMount() {
     utils.getFromBackend(
@@ -31,6 +32,9 @@ class SearchResults extends Component {
     const picPath = this.state.pics[breed];
     return <img src={picPath} alt={picPath} height="64" width="64" />;
   }
+  onOwnerClick(event) {
+    console.log(`onOwnerClick: ${event.target.id}`);
+  }
   render() {
     return (
       <div>
@@ -46,6 +50,7 @@ class SearchResults extends Component {
               <th>Gender</th>
               <th>Birth Date</th>
               <th>Zip Code</th>
+              <th>Contact Owner</th>
             </tr>
           </thead>
           <tbody>
@@ -60,6 +65,9 @@ class SearchResults extends Component {
                   <td>{pet.gender}</td>
                   <td>{pet.birth_date}</td>
                   <td>{pet.zip_code}</td>
+                  <td>
+                    <a className="btn waves-effect waves-light" href="mailto:kelly@garkle.com">Owner</a>
+                  </td>
                 </tr>
               );
             })}
