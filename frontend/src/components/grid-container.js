@@ -31,19 +31,19 @@ class GridContainer extends Component {
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
-            <div className="hexagon">
+            <div className="hexagon" onClick={() => this.props.history.push('/search')}>
+              SEARCH<br></br>mate or date?
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/responsible-breeding')}>
-              <br></br>Responsible Breeding
+              TIPS<br></br>Responsible Breeding
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
           </div>
           <div className="hex-row shift">
-            <div className="hexagon" onClick={() => this.props.history.push('/search')}>
-              3<br></br>Search<br></br>mate or date?
+            <div className="hexagon">
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -56,13 +56,13 @@ class GridContainer extends Component {
               <div className="face2"></div>
             </div>
             <div className="hexagon" onClick={() => this.props.history.push('/adopt_me')}>
-              I want to adopt a pup!
+              ADOPT<br></br>a pup!
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
           </div>
         </div>
-        <Footer id="my_footer" />
+        <Footer />
       </div>
     );
   }

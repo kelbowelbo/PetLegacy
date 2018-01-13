@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from './footer.js';
 const utils = require('../backend_utils.js');
 
 class PetList extends Component {
@@ -110,6 +111,7 @@ class PetList extends Component {
         <button className="btn waves-effect waves-light" name="action" onClick={()=>this.props.history.goBack()}> Go Home
           <i className="material-icons right">send</i>
         </button>
+        <Footer />
       </div>
     );
   }

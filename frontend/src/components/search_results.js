@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from './footer.js';
 const utils = require('../backend_utils.js');
 
 class SearchResults extends Component {
@@ -38,41 +39,45 @@ class SearchResults extends Component {
   render() {
     return (
       <div>
-        <h4 className="component_title">My Pets</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Picture</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>AKC Name</th>
-              <th>Breed</th>
-              <th>Gender</th>
-              <th>Birth Date</th>
-              <th>Zip Code</th>
-              <th>Contact Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.pets.map((pet) => {
-              return (
-                <tr key={pet.id}>
-                  <td>{this.getBreedPic(pet.breed)}</td>
-                  <td>{pet.first_name}</td>
-                  <td>{pet.last_name}</td>
-                  <td>{pet.AKC_registered_name}</td>
-                  <td>{pet.breed}</td>
-                  <td>{pet.gender}</td>
-                  <td>{pet.birth_date}</td>
-                  <td>{pet.zip_code}</td>
-                  <td>
-                    <a className="btn waves-effect waves-light" href="mailto:kelly@garkle.com">Owner</a>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+          <h4 className="component_title">My Pets</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Picture</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>AKC Name</th>
+                <th>Breed</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+                <th>Zip Code</th>
+                <th>Contact Owner</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.pets.map((pet) => {
+                return (
+                  <tr key={pet.id}>
+                    <td>{this.getBreedPic(pet.breed)}</td>
+                    <td>{pet.first_name}</td>
+                    <td>{pet.last_name}</td>
+                    <td>{pet.AKC_registered_name}</td>
+                    <td>{pet.breed}</td>
+                    <td>{pet.gender}</td>
+                    <td>{pet.birth_date}</td>
+                    <td>{pet.zip_code}</td>
+                    <td>
+                      <a className="btn waves-effect waves-light" href="mailto:kelly@garkle.com">Owner</a>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <button className="btn waves-effect waves-light" name="action" onClick={()=>this.props.history.push('/grid')}> Go Home
+            <i className="material-icons right">send</i>
+          </button>
+        <Footer />
       </div>
     );
   }

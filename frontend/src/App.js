@@ -18,7 +18,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Welcome to Pet Legacy</h1>
+            <h1 className="App-title">Welcome to PetLegacy</h1>
           </header>
           <Route exact path="/" component={Login} />
           <Route exact path="/adopt_me" component={AdoptMe} />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Row } from 'react-materialize';
+import Footer from './footer.js';
 const utils = require('../backend_utils.js');
 
 
@@ -80,10 +81,11 @@ class OwnerInfo extends Component {
           </button>
           <br></br>
           <br></br>
-          <button className="btn waves-effect waves-light" name="action" onClick={()=>this.props.history.push('/grid')}> Go Home
+          <button className="btn waves-effect waves-light" name="action" onClick={()=>this.props.history.push('/grid')}>Go Home
             <i className="material-icons right">send</i>
           </button>
         </form>
+        <Footer />
       </div>
     );
   }
