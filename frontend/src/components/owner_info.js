@@ -61,9 +61,9 @@ class OwnerInfo extends Component {
           <br></br>
           <br></br>
           <h4 className="component_title">   Tell us about yourself. You only have to do this once, we promise! </h4>
-          <div class="container">
-            <div class="row">
-              <div class="col l6 l12">
+          <div className="container">
+            <div className="row">
+              <div className="col l6 l12">
                 <Row>
                   <Input s={6} labelClassName="active" placeholder="" name="first_name" value={this.state.first_name} label="First Name (the human, not the pup)" onChange={this.handleChange} />
                   <Input s={6} labelClassName="active" placeholder="" name="last_name" value={this.state.last_name} label="Last Name (the human, not the pup)" onChange={this.handleChange} />

@@ -10,7 +10,6 @@ import PetList from './components/pet_list.js';
 import ResponsibleBreeding from './components/responsible_breeding.js';
 import Search from './components/search.js';
 import SearchResults from './components/search_results.js';
-import FaIconPack from 'react-icons/lib/fa'
 
 
 class App extends Component {
@@ -28,12 +27,11 @@ class App extends Component {
           <Route exact path="/pets" component={PetList} />
           <Route exact path="/responsible-breeding" component={ResponsibleBreeding} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/search-results/:ownerId/:breed/:gender/:zipCode" component={SearchResults} />;
+          <Route exact path="/search-results/:ownerId/:breed/:gender/:zipCode" component={SearchResults} />
           <Route exact path="/pet/:ownerId/:petId" component={PetInfo} />
         </div>
       </Router>
     );
-    // <Footer />
   }
 }
 

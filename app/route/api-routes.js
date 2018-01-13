@@ -18,7 +18,7 @@ function isLoggedIn() {
 			// console.log("authenticated already");
 			return next();
 		} else {
-			console.log("NOT authenticated");
+			// console.log("NOT authenticated");
 			res.redirect('/auth/facebook');
 		}
 	}
@@ -145,6 +145,8 @@ app.get("/api/pets/owner/:id", isLoggedIn(), function(req, res){
 	})
 });
 
+// this block of code calls the db search for pets.  Requesting the below info.
+// and responding with the results.
 app.get("/api/petsearch/:owner_id/:gender/:breed/:zip_code", isLoggedIn(), function(req, res) {
 	// console.log(`/api/petsearch/${req.params.owner_id}/${req.params.breed}/${req.params.gender}/${req.params.zip_code}`);
 	// console.log(`params: ${JSON.stringify(req.params)}`);

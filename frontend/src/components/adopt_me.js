@@ -7,7 +7,9 @@ class AdoptMe extends Component {
       <div className="menu-container">
         <div className="hex-wrapper">
           <div className="hex-row">
-            <div className="hexagon">
+            <div className="hexagon" onClick={() => this.props.history.push('/')}>
+              <br></br>
+              LOG OUT
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
@@ -18,7 +20,8 @@ class AdoptMe extends Component {
               <div className="face1"></div>
               <div className="face2"></div>
             </div>
-            <div className="hexagon">
+            <div className="hexagon" onClick={()=>this.props.history.goBack()}>
+              GO HOME
               <div className="face1"></div>
               <div className="face2"></div>
             </div>

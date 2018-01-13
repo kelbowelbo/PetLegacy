@@ -44,7 +44,6 @@ var pets = petLegacyDB.define('pets', {
 });
 
 
-
 petLegacyDB.sync().then(function() {
   // The line below for test purposes
   // petLegacyTests();
@@ -94,6 +93,8 @@ function ensureUserExists(authId, done) {
   })
 }
 
+// this block of code locates all pets of a certain breed, gender, in a certain
+// zip code that ARE NOT in your pets - [Op.ne] - operation not equal
 function petSearch(ownerId, breed, gender, zipCode, done) {
   pets.findAll({
     where: {

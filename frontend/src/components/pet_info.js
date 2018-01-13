@@ -75,9 +75,9 @@ class PetInfo extends Component {
           <br></br>
           <br></br>
           <h4 className="component_title">Tell us about your pup.</h4>
-          <div class="container">
-            <div class="row">
-              <div class="col l6 l12">
+          <div className="container">
+            <div className="row">
+              <div className="col l6 l12">
                 <Row>
                   <Input s={6} labelClassName="active" placeholder="" name="first_name" value={this.state.first_name} label="First Name (the pup, not the human)" onChange={this.handleChange} />
                   <Input s={6} labelClassName="active" placeholder="" name="last_name" value={this.state.last_name} label="Last Name (the pup, not the human)" onChange={this.handleChange} />
